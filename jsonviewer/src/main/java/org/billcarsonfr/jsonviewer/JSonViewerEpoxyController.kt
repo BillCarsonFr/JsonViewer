@@ -150,6 +150,7 @@ class JSonViewerEpoxyController(private val context: Context) :
                             append(valueToSpan(model))
                         }
                     )
+                    copyValue(model.stringRes)
                 }
             }
         }
