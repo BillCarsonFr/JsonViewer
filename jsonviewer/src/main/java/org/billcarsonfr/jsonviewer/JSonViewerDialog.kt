@@ -51,12 +51,11 @@ class JSonViewerDialog : DialogFragment() {
         fun newInstance(
             jsonString: String,
             initialOpenDepth: Int = -1,
-            wrap: Boolean = false,
             styleProvider: JSonViewerStyleProvider? = null
         ): JSonViewerDialog {
             val args = Bundle()
             val parcelableArgs =
-                JSonViewerFragmentArgs(jsonString, initialOpenDepth, wrap, styleProvider)
+                JSonViewerFragmentArgs(jsonString, initialOpenDepth, false, styleProvider)
             args.putParcelable(MvRx.KEY_ARG, parcelableArgs)
             return JSonViewerDialog().apply { arguments = args }
         }
