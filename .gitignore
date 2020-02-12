@@ -1,0 +1,14 @@
+/build
+
+.gradle/
+
+.idea/
+
+captures/
+
+.DS_Store
+
+local.properties
+
+
+jsonviewer/build/

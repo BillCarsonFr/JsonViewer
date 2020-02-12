@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">JsonViewer</string>
+    <string name="copy_value">Copy Value</string>
+</resources>
