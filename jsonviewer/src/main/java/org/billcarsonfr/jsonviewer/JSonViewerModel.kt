@@ -84,7 +84,7 @@ internal object ModelParser {
                     parent.addChild(it)
                 }
             }
-            is Int -> {
+            is Number -> {
                 JSonViewerLeaf(key, index, obj.toString(), JSONType.NUMBER).let {
                     it.depth = depth
                     parent.addChild(it)
