@@ -30,7 +30,6 @@ class JSonViewerArray(key: String?, index: Int?, jObject: JSONArray) :
     var items = ArrayList<JSonViewerModel>()
 
     override fun addChild(model: JSonViewerModel) {
-        val index = items.size
         items.add(model)
     }
 }

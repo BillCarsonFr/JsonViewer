@@ -76,5 +76,4 @@ abstract class ValueItem : EpoxyModelWithHolder<ValueItem.Holder>() {
             }
         }
     }
-
 }

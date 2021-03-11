@@ -50,6 +50,5 @@ class JSonViewerViewModel(initialState: JSonViewerState) :
             }
 
         }
-
     }
 }
