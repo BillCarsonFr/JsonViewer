@@ -17,14 +17,14 @@ Add this in your root build.gradle at the end of repositories:
 ````
 
 ````
-    implementation 'com.github.BillCarsonFr:JsonViewer:0.3'
+    implementation 'com.github.BillCarsonFr:JsonViewer:0.6'
 ````
 
 This library depends on epoxy
 ````
     implementation("com.airbnb.android:epoxy:$epoxy_version")
     kapt "com.airbnb.android:epoxy-processor:$epoxy_version"
-    implementation 'com.airbnb.android:mvrx:1.3.0'
+    implementation 'com.airbnb.android:mvrx:1.5.1'
 ````
 
 

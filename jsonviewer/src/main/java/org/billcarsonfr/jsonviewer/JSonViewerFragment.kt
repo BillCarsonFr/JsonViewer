@@ -11,7 +11,7 @@ import com.airbnb.mvrx.BaseMvRxFragment
 import com.airbnb.mvrx.MvRx
 import com.airbnb.mvrx.fragmentViewModel
 import com.airbnb.mvrx.withState
-import kotlinx.android.parcel.Parcelize
+import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class JSonViewerFragmentArgs(
@@ -24,13 +24,13 @@ data class JSonViewerFragmentArgs(
 
 class JSonViewerFragment : BaseMvRxFragment() {
 
-    val viewModel: JSonViewerViewModel by fragmentViewModel(JSonViewerViewModel::class)
+    private val viewModel: JSonViewerViewModel by fragmentViewModel(JSonViewerViewModel::class)
 
-    val epoxyController by lazy {
+    private val epoxyController by lazy {
         JSonViewerEpoxyController(requireContext())
     }
 
-    lateinit var recyclerView: EpoxyRecyclerView
+    private lateinit var recyclerView: EpoxyRecyclerView
 
     override fun onCreateView(
         inflater: LayoutInflater,

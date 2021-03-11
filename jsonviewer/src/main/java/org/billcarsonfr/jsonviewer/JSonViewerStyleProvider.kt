@@ -4,7 +4,7 @@ import android.content.Context
 import android.os.Parcelable
 import androidx.annotation.ColorInt
 import androidx.core.content.ContextCompat
-import kotlinx.android.parcel.Parcelize
+import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class JSonViewerStyleProvider(

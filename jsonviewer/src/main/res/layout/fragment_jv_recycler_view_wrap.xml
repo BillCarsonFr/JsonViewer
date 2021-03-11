@@ -9,4 +9,3 @@
     android:scrollbars="vertical"
     tools:itemCount="5"
     tools:listitem="@layout/item_jv_base_value" />
-
