@@ -7,10 +7,10 @@ import kotlinx.coroutines.launch
 
 data class JSonViewerState(
     val root: Async<JSonViewerObject> = Uninitialized
-) : MvRxState
+) : MavericksState
 
 class JSonViewerViewModel(initialState: JSonViewerState) :
-    BaseMvRxViewModel<JSonViewerState>(initialState, false) {
+    MavericksViewModel<JSonViewerState>(initialState) {
 
 
     fun setJsonSource(json: String, initialOpenDepth: Int) {
@@ -36,7 +36,7 @@ class JSonViewerViewModel(initialState: JSonViewerState) :
         }
     }
 
-    companion object : MvRxViewModelFactory<JSonViewerViewModel, JSonViewerState> {
+    companion object : MavericksViewModelFactory<JSonViewerViewModel, JSonViewerState> {
 
         @JvmStatic
         override fun initialState(viewModelContext: ViewModelContext): JSonViewerState? {

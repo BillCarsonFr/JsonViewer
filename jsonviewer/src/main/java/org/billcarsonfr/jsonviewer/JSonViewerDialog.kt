@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
 import androidx.fragment.app.DialogFragment
-import com.airbnb.mvrx.MvRx
+import com.airbnb.mvrx.Mavericks
 
 
 class JSonViewerDialog : DialogFragment() {
@@ -22,7 +22,7 @@ class JSonViewerDialog : DialogFragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        val args: JSonViewerFragmentArgs = arguments?.getParcelable(MvRx.KEY_ARG) ?: return
+        val args: JSonViewerFragmentArgs = arguments?.getParcelable(Mavericks.KEY_ARG) ?: return
         if (savedInstanceState == null) {
             childFragmentManager.beginTransaction()
                 .replace(
@@ -56,7 +56,7 @@ class JSonViewerDialog : DialogFragment() {
             val args = Bundle()
             val parcelableArgs =
                 JSonViewerFragmentArgs(jsonString, initialOpenDepth, false, styleProvider)
-            args.putParcelable(MvRx.KEY_ARG, parcelableArgs)
+            args.putParcelable(Mavericks.KEY_ARG, parcelableArgs)
             return JSonViewerDialog().apply { arguments = args }
         }
     }

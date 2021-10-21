@@ -42,7 +42,7 @@ dependencies {
     // Epoxy dependency
     implementation "com.airbnb.android:epoxy:$epoxy_version"
     kapt "com.airbnb.android:epoxy-processor:$epoxy_version"
-    implementation 'com.airbnb.android:mvrx:1.5.1'
+    implementation 'com.airbnb.android:mavericks:2.4.0'
     // Span utils
     implementation 'me.gujun.android:span:1.7'
     implementation 'com.google.android.material:material:1.4.0-alpha01'

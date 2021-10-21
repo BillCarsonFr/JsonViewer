@@ -48,7 +48,7 @@ dependencies {
     implementation("com.airbnb.android:epoxy:$epoxy_version")
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     kapt "com.airbnb.android:epoxy-processor:$epoxy_version"
-    implementation 'com.airbnb.android:mvrx:1.5.1'
+    implementation 'com.airbnb.android:mavericks:2.4.0'
 // ============
 
     testImplementation 'junit:junit:4.13.2'

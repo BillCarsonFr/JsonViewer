@@ -5,12 +5,10 @@ import android.os.Parcelable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.airbnb.epoxy.EpoxyRecyclerView
-import com.airbnb.mvrx.BaseMvRxFragment
-import com.airbnb.mvrx.MvRx
-import com.airbnb.mvrx.fragmentViewModel
-import com.airbnb.mvrx.withState
+import com.airbnb.mvrx.*
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
@@ -22,9 +20,9 @@ data class JSonViewerFragmentArgs(
 ) : Parcelable
 
 
-class JSonViewerFragment : BaseMvRxFragment() {
+class JSonViewerFragment : Fragment(), MavericksView {
 
-    private val viewModel: JSonViewerViewModel by fragmentViewModel(JSonViewerViewModel::class)
+    private val viewModel: JSonViewerViewModel by fragmentViewModel()
 
     private val epoxyController by lazy {
         JSonViewerEpoxyController(requireContext())
@@ -37,7 +35,7 @@ class JSonViewerFragment : BaseMvRxFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val args: JSonViewerFragmentArgs? = arguments?.getParcelable(MvRx.KEY_ARG)
+        val args: JSonViewerFragmentArgs? = arguments?.getParcelable(Mavericks.KEY_ARG)
         val inflate =
             if (args?.wrap == true) {
                 inflater.inflate(R.layout.fragment_jv_recycler_view_wrap, container, false)
@@ -71,7 +69,7 @@ class JSonViewerFragment : BaseMvRxFragment() {
             return JSonViewerFragment().apply {
                 arguments = Bundle().apply {
                     putParcelable(
-                        MvRx.KEY_ARG,
+                        Mavericks.KEY_ARG,
                         JSonViewerFragmentArgs(
                             jsonString,
                             initialOpenDepth,
