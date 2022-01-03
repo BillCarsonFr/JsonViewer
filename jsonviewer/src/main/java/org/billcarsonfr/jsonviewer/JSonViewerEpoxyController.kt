@@ -24,7 +24,7 @@ internal class JSonViewerEpoxyController(private val context: Context) :
             is Fail -> {
                 valueItem {
                     id("fail")
-                    text(async.error.localizedMessage)
+                    text(async.error.localizedMessage?.toSafeCharSequence())
                 }
             }
             is Success -> {
@@ -54,7 +54,7 @@ internal class JSonViewerEpoxyController(private val context: Context) :
                     close(id, depth, true)
                 } else {
                     valueItem {
-                        id(id+"_sum")
+                        id(id + "_sum")
                         depth(depth)
                         text(
                             span {
@@ -78,7 +78,7 @@ internal class JSonViewerEpoxyController(private val context: Context) :
                                     +"{+${model.keys.size}}"
                                     textColor = host.styleProvider.baseColor
                                 }
-                            }
+                            }.toSafeCharSequence()
                         )
                         itemClickListener(View.OnClickListener { host.itemClicked(model) })
                     }
@@ -93,7 +93,7 @@ internal class JSonViewerEpoxyController(private val context: Context) :
                     close(id, depth, false)
                 } else {
                     valueItem {
-                        id(id+"_sum")
+                        id(id + "_sum")
                         depth(depth)
                         text(
                             span {
@@ -117,7 +117,7 @@ internal class JSonViewerEpoxyController(private val context: Context) :
                                     +"[+${model.items.size}]"
                                     textColor = host.styleProvider.baseColor
                                 }
-                            }
+                            }.toSafeCharSequence()
                         )
                         itemClickListener(View.OnClickListener { host.itemClicked(model) })
                     }
@@ -147,7 +147,7 @@ internal class JSonViewerEpoxyController(private val context: Context) :
                                 }
                             }
                             append(host.valueToSpan(model))
-                        }
+                        }.toSafeCharSequence()
                     )
                     copyValue(model.stringRes)
                 }
@@ -217,7 +217,7 @@ internal class JSonViewerEpoxyController(private val context: Context) :
                     span("{".takeIf { isObject } ?: "[") {
                         textColor = host.styleProvider.baseColor
                     }
-                }
+                }.toSafeCharSequence()
             )
             itemClickListener(View.OnClickListener { host.itemClicked(composed) })
         }
@@ -238,7 +238,7 @@ internal class JSonViewerEpoxyController(private val context: Context) :
                 span {
                     text = "}".takeIf { isObject } ?: "]"
                     textColor = host.styleProvider.baseColor
-                }
+                }.toSafeCharSequence()
             )
         }
     }
