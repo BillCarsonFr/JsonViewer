@@ -9,7 +9,7 @@ import me.gujun.android.span.Span
 import me.gujun.android.span.image
 import me.gujun.android.span.span
 
-class JSonViewerEpoxyController(private val context: Context) :
+internal class JSonViewerEpoxyController(private val context: Context) :
     TypedEpoxyController<JSonViewerState>() {
 
     var styleProvider: JSonViewerStyleProvider = JSonViewerStyleProvider.default(context)

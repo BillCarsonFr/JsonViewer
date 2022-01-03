@@ -14,7 +14,7 @@ import com.airbnb.epoxy.EpoxyModelClass
 import com.airbnb.epoxy.EpoxyModelWithHolder
 
 @EpoxyModelClass(layout = R2.layout.item_jv_base_value)
-abstract class ValueItem : EpoxyModelWithHolder<ValueItem.Holder>() {
+internal abstract class ValueItem : EpoxyModelWithHolder<ValueItem.Holder>() {
 
     @EpoxyAttribute
     var text: CharSequence? = null

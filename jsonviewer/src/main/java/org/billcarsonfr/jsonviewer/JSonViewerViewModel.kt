@@ -5,11 +5,11 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
-data class JSonViewerState(
+internal data class JSonViewerState(
     val root: Async<JSonViewerObject> = Uninitialized
 ) : MavericksState
 
-class JSonViewerViewModel(initialState: JSonViewerState) :
+internal class JSonViewerViewModel(initialState: JSonViewerState) :
     MavericksViewModel<JSonViewerState>(initialState) {
 
 
