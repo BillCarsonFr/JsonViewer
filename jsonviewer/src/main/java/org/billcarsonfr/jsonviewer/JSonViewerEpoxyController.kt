@@ -6,7 +6,6 @@ import com.airbnb.epoxy.TypedEpoxyController
 import com.airbnb.mvrx.Fail
 import com.airbnb.mvrx.Success
 import me.gujun.android.span.Span
-import me.gujun.android.span.image
 import me.gujun.android.span.span
 
 internal class JSonViewerEpoxyController(private val context: Context) :
@@ -34,7 +33,6 @@ internal class JSonViewerEpoxyController(private val context: Context) :
                 model?.let {
                     buildRec(it, 0, "")
                 }
-
             }
         }
     }

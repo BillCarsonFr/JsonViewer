@@ -16,15 +16,7 @@ import androidx.fragment.app.Fragment
  * create an instance of this fragment.
  */
 class ChooseSampleFragment : Fragment() {
-
-
     private var mListener: OnFragmentMainNavigationListener? = null
-
-    lateinit var showWrappedButton: Button
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -43,14 +35,11 @@ class ChooseSampleFragment : Fragment() {
                     }
                 }
 
-
                 view.findViewById<Button>(R.id.showAsBottomSheet)?.let {
                     it.setOnClickListener {
                         mListener?.navigateToDialog()
                     }
                 }
-
-
             }
         }
     }
@@ -88,5 +77,4 @@ class ChooseSampleFragment : Fragment() {
             return ChooseSampleFragment()
         }
     }
-
 }
