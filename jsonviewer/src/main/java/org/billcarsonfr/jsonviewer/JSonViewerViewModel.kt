@@ -1,8 +1,6 @@
 package org.billcarsonfr.jsonviewer
 
 import com.airbnb.mvrx.*
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
 internal data class JSonViewerState(
@@ -17,7 +15,7 @@ internal class JSonViewerViewModel(initialState: JSonViewerState) :
         setState {
             copy(root = Loading())
         }
-        GlobalScope.launch(Dispatchers.Default) {
+        viewModelScope.launch {
             try {
                 ModelParser.fromJsonString(json, initialOpenDepth).let {
                     setState {
