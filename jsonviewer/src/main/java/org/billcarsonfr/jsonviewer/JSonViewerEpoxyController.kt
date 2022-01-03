@@ -42,6 +42,7 @@ internal class JSonViewerEpoxyController(private val context: Context) :
         depth: Int,
         idBase: String
     ) {
+        val host = this
         val id = "$idBase/${model.key ?: model.index}_${model.isExpanded}}"
         when (model) {
             is JSonViewerObject -> {
@@ -59,27 +60,27 @@ internal class JSonViewerEpoxyController(private val context: Context) :
                             span {
                                 if (model.key != null) {
                                     span("\"${model.key}\"") {
-                                        textColor = styleProvider.keyColor
+                                        textColor = host.styleProvider.keyColor
                                     }
                                     span(" : ") {
-                                        textColor = styleProvider.baseColor
+                                        textColor = host.styleProvider.baseColor
                                     }
                                 }
                                 if (model.index != null) {
                                     span("${model.index}") {
-                                        textColor = styleProvider.secondaryColor
+                                        textColor = host.styleProvider.secondaryColor
                                     }
                                     span(" : ") {
-                                        textColor = styleProvider.baseColor
+                                        textColor = host.styleProvider.baseColor
                                     }
                                 }
                                 span {
                                     +"{+${model.keys.size}}"
-                                    textColor = styleProvider.baseColor
+                                    textColor = host.styleProvider.baseColor
                                 }
                             }
                         )
-                        itemClickListener(View.OnClickListener { itemClicked(model) })
+                        itemClickListener(View.OnClickListener { host.itemClicked(model) })
                     }
                 }
             }
@@ -98,27 +99,27 @@ internal class JSonViewerEpoxyController(private val context: Context) :
                             span {
                                 if (model.key != null) {
                                     span("\"${model.key}\"") {
-                                        textColor = styleProvider.keyColor
+                                        textColor = host.styleProvider.keyColor
                                     }
                                     span(" : ") {
-                                        textColor = styleProvider.baseColor
+                                        textColor = host.styleProvider.baseColor
                                     }
                                 }
                                 if (model.index != null) {
                                     span("${model.index}") {
-                                        textColor = styleProvider.secondaryColor
+                                        textColor = host.styleProvider.secondaryColor
                                     }
                                     span(" : ") {
-                                        textColor = styleProvider.baseColor
+                                        textColor = host.styleProvider.baseColor
                                     }
                                 }
                                 span {
                                     +"[+${model.items.size}]"
-                                    textColor = styleProvider.baseColor
+                                    textColor = host.styleProvider.baseColor
                                 }
                             }
                         )
-                        itemClickListener(View.OnClickListener { itemClicked(model) })
+                        itemClickListener(View.OnClickListener { host.itemClicked(model) })
                     }
                 }
             }
@@ -130,22 +131,22 @@ internal class JSonViewerEpoxyController(private val context: Context) :
                         span {
                             if (model.key != null) {
                                 span("\"${model.key}\"") {
-                                    textColor = styleProvider.keyColor
+                                    textColor = host.styleProvider.keyColor
                                 }
                                 span(" : ") {
-                                    textColor = styleProvider.baseColor
+                                    textColor = host.styleProvider.baseColor
                                 }
                             }
 
                             if (model.index != null) {
                                 span("${model.index}") {
-                                    textColor = styleProvider.secondaryColor
+                                    textColor = host.styleProvider.secondaryColor
                                 }
                                 span(" : ") {
-                                    textColor = styleProvider.baseColor
+                                    textColor = host.styleProvider.baseColor
                                 }
                             }
-                            append(valueToSpan(model))
+                            append(host.valueToSpan(model))
                         }
                     )
                     copyValue(model.stringRes)
@@ -154,26 +155,27 @@ internal class JSonViewerEpoxyController(private val context: Context) :
         }
     }
 
-    fun valueToSpan(leaf: JSonViewerLeaf): Span {
+    private fun valueToSpan(leaf: JSonViewerLeaf): Span {
+        val host = this
         return when (leaf.type) {
             JSONType.STRING -> {
                 span("\"${leaf.stringRes}\"") {
-                    textColor = styleProvider.stringColor
+                    textColor = host.styleProvider.stringColor
                 }
             }
             JSONType.NUMBER -> {
-                span("${leaf.stringRes}") {
-                    textColor = styleProvider.numberColor
+                span(leaf.stringRes) {
+                    textColor = host.styleProvider.numberColor
                 }
             }
             JSONType.BOOLEAN -> {
-                span("${leaf.stringRes}") {
-                    textColor = styleProvider.booleanColor
+                span(leaf.stringRes) {
+                    textColor = host.styleProvider.booleanColor
                 }
             }
             JSONType.NULL -> {
                 span("null") {
-                    textColor = styleProvider.booleanColor
+                    textColor = host.styleProvider.booleanColor
                 }
             }
         }
@@ -187,6 +189,7 @@ internal class JSonViewerEpoxyController(private val context: Context) :
         isObject: Boolean = true,
         composed: JSonViewerModel
     ) {
+        val host = this
         valueItem {
             id("${id}_Open")
             depth(depth)
@@ -194,29 +197,29 @@ internal class JSonViewerEpoxyController(private val context: Context) :
                 span {
                     if (key != null) {
                         span("\"$key\"") {
-                            textColor = styleProvider.keyColor
+                            textColor = host.styleProvider.keyColor
                         }
                         span(" : ") {
-                            textColor = styleProvider.baseColor
+                            textColor = host.styleProvider.baseColor
                         }
                     }
                     if (index != null) {
                         span("$index") {
-                            textColor = styleProvider.secondaryColor
+                            textColor = host.styleProvider.secondaryColor
                         }
                         span(" : ") {
-                            textColor = styleProvider.baseColor
+                            textColor = host.styleProvider.baseColor
                         }
                     }
                     span("- ") {
-                        textColor = styleProvider.secondaryColor
+                        textColor = host.styleProvider.secondaryColor
                     }
                     span("{".takeIf { isObject } ?: "[") {
-                        textColor = styleProvider.baseColor
+                        textColor = host.styleProvider.baseColor
                     }
                 }
             )
-            itemClickListener(View.OnClickListener { itemClicked(composed) })
+            itemClickListener(View.OnClickListener { host.itemClicked(composed) })
         }
 
     }
@@ -227,14 +230,16 @@ internal class JSonViewerEpoxyController(private val context: Context) :
     }
 
     private fun close(id: String, depth: Int, isObject: Boolean = true) {
+        val host = this
         valueItem {
             id("${id}_Close")
             depth(depth)
             text(
                 span {
                     text = "}".takeIf { isObject } ?: "]"
-                    textColor = styleProvider.baseColor
-                })
+                    textColor = host.styleProvider.baseColor
+                }
+            )
         }
     }
 }
