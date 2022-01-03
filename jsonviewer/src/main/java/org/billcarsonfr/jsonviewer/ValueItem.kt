@@ -25,7 +25,7 @@ internal abstract class ValueItem : EpoxyModelWithHolder<ValueItem.Holder>() {
     @EpoxyAttribute
     var copyValue: String? = null
 
-    @EpoxyAttribute
+    @EpoxyAttribute(EpoxyAttribute.Option.DoNotHash)
     var itemClickListener: View.OnClickListener? = null
 
     override fun bind(holder: Holder) {
