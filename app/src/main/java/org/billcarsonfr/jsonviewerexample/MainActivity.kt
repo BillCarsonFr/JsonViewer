@@ -48,7 +48,7 @@ class MainActivity : AppCompatActivity(), ChooseSampleFragment.OnFragmentMainNav
         return true
     }
 
-    override fun navigateToWrapSample(wrap: Boolean) {
+    override fun navigateToSample(wrap: Boolean) {
         val sample = resources.openRawResource(R.raw.sample1)
             .bufferedReader().use { it.readText() }
         supportFragmentManager.beginTransaction()

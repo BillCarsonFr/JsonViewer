@@ -15,7 +15,7 @@ import com.airbnb.mvrx.withState
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-data class JSonViewerFragmentArgs(
+internal data class JSonViewerFragmentArgs(
     val jsonString: String,
     val defaultOpenDepth: Int,
     val wrap: Boolean,

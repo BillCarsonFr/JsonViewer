@@ -31,11 +31,11 @@ class ChooseSampleFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewBinding.showWrappedViewer.setOnClickListener {
-            mListener?.navigateToWrapSample(true)
+            mListener?.navigateToSample(wrap = true)
         }
 
         viewBinding.showWrappedViewerScroll.setOnClickListener {
-            mListener?.navigateToWrapSample(false)
+            mListener?.navigateToSample(wrap = false)
         }
 
         viewBinding.showAsBottomSheet.setOnClickListener {
@@ -67,7 +67,7 @@ class ChooseSampleFragment : Fragment() {
      * See the Android Training lesson [Communicating with Other Fragments](http://developer.android.com/training/basics/fragments/communicating.html) for more information.
      */
     interface OnFragmentMainNavigationListener {
-        fun navigateToWrapSample(wrap: Boolean)
+        fun navigateToSample(wrap: Boolean)
         fun navigateToDialog()
     }
 
