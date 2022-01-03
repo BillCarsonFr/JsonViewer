@@ -32,6 +32,7 @@ class MainActivity : AppCompatActivity(), ChooseSampleFragment.OnFragmentMainNav
             R.id.sample3 -> loadSample(R.raw.sample3)
             R.id.sample4 -> loadSample(R.raw.sample4)
             R.id.sample5 -> loadSample(R.raw.sample5)
+            R.id.sample6 -> loadSample(R.raw.sample6)
             else -> super.onOptionsItemSelected(item)
         }
     }
