@@ -44,7 +44,6 @@ dependencies {
 //=== ADD IN YOUR PROJECT
     // Epoxy dependency
     implementation "com.airbnb.android:epoxy:$epoxy_version"
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     kapt "com.airbnb.android:epoxy-processor:$epoxy_version"
     implementation 'com.airbnb.android:mavericks:2.5.0'
 // ============
