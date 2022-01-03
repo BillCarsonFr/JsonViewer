@@ -4,16 +4,16 @@ import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
 
-open class JSonViewerModel(var key: String?, var index: Int?, val jObject: Any) {
+internal open class JSonViewerModel(var key: String?, var index: Int?, val jObject: Any) {
     var depth = 0
     var isExpanded = false
 }
 
-interface Composed {
+internal interface Composed {
     fun addChild(model: JSonViewerModel)
 }
 
-class JSonViewerObject(key: String?, index: Int?, jObject: JSONObject) :
+internal class JSonViewerObject(key: String?, index: Int?, jObject: JSONObject) :
     JSonViewerModel(key, index, jObject),
     Composed {
 
@@ -25,7 +25,7 @@ class JSonViewerObject(key: String?, index: Int?, jObject: JSONObject) :
 
 }
 
-class JSonViewerArray(key: String?, index: Int?, jObject: JSONArray) :
+internal class JSonViewerArray(key: String?, index: Int?, jObject: JSONArray) :
     JSonViewerModel(key, index, jObject), Composed {
     var items = ArrayList<JSonViewerModel>()
 
@@ -34,11 +34,11 @@ class JSonViewerArray(key: String?, index: Int?, jObject: JSONArray) :
     }
 }
 
-class JSonViewerLeaf(key: String?, index: Int?, val stringRes: String, val type: JSONType) :
+internal class JSonViewerLeaf(key: String?, index: Int?, val stringRes: String, val type: JSONType) :
     JSonViewerModel(key, index, stringRes)
 
 
-enum class JSONType {
+internal enum class JSONType {
     STRING,
     NUMBER,
     BOOLEAN,

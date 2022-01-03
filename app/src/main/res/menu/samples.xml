@@ -1,20 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
-
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="HardcodedText">
     <item
         android:id="@+id/sample1"
-        android:title="sample 1"/>
-
+        android:title="sample 1" />
     <item
         android:id="@+id/sample2"
-        android:title="sample 2"/>
+        android:title="sample 2" />
     <item
         android:id="@+id/sample3"
-        android:title="sample 3"/>
+        android:title="sample 3" />
     <item
         android:id="@+id/sample4"
-        android:title="sample 4"/>
+        android:title="sample 4" />
     <item
         android:id="@+id/sample5"
-        android:title="sample 5"/>
+        android:title="sample 5" />
+    <item
+        android:id="@+id/sample6"
+        android:title="Emoji" />
 </menu>

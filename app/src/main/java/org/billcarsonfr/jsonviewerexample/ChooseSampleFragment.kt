@@ -5,8 +5,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import androidx.fragment.app.Fragment
+import org.billcarsonfr.jsonviewerexample.databinding.FragmentChooseSampleBinding
 
 /**
  * Activities that contain this fragment must implement the
@@ -16,42 +16,30 @@ import androidx.fragment.app.Fragment
  * create an instance of this fragment.
  */
 class ChooseSampleFragment : Fragment() {
-
-
     private var mListener: OnFragmentMainNavigationListener? = null
 
-    lateinit var showWrappedButton: Button
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
+    private lateinit var viewBinding: FragmentChooseSampleBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_choose_sample, container, false).also { view ->
-            view.findViewById<Button>(R.id.showWrappedViewer)?.let {
-                it.setOnClickListener {
-                    mListener?.navigateToWrapSample(true)
-                }
+    ): View {
+        viewBinding = FragmentChooseSampleBinding.inflate(inflater, container, false)
+        return viewBinding.root
+    }
 
-                view.findViewById<Button>(R.id.showWrappedViewerScroll)?.let {
-                    it.setOnClickListener {
-                        mListener?.navigateToWrapSample(false)
-                    }
-                }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        viewBinding.showWrappedViewer.setOnClickListener {
+            mListener?.navigateToSample(wrap = true)
+        }
 
+        viewBinding.showWrappedViewerScroll.setOnClickListener {
+            mListener?.navigateToSample(wrap = false)
+        }
 
-                view.findViewById<Button>(R.id.showAsBottomSheet)?.let {
-                    it.setOnClickListener {
-                        mListener?.navigateToDialog()
-                    }
-                }
-
-
-            }
+        viewBinding.showAsBottomSheet.setOnClickListener {
+            mListener?.navigateToDialog()
         }
     }
 
@@ -79,7 +67,7 @@ class ChooseSampleFragment : Fragment() {
      * See the Android Training lesson [Communicating with Other Fragments](http://developer.android.com/training/basics/fragments/communicating.html) for more information.
      */
     interface OnFragmentMainNavigationListener {
-        fun navigateToWrapSample(wrap: Boolean)
+        fun navigateToSample(wrap: Boolean)
         fun navigateToDialog()
     }
 
@@ -88,5 +76,4 @@ class ChooseSampleFragment : Fragment() {
             return ChooseSampleFragment()
         }
     }
-
 }

@@ -3,7 +3,7 @@ package org.billcarsonfr.jsonviewer
 import android.content.Context
 import android.util.TypedValue
 
-object Utils {
+internal object Utils {
     fun dpToPx(dp: Int, context: Context): Int {
         return TypedValue.applyDimension(
             TypedValue.COMPLEX_UNIT_DIP,

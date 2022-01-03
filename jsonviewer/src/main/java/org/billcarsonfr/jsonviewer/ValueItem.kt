@@ -14,25 +14,23 @@ import com.airbnb.epoxy.EpoxyModelClass
 import com.airbnb.epoxy.EpoxyModelWithHolder
 
 @EpoxyModelClass(layout = R2.layout.item_jv_base_value)
-abstract class ValueItem : EpoxyModelWithHolder<ValueItem.Holder>() {
+internal abstract class ValueItem : EpoxyModelWithHolder<ValueItem.Holder>() {
 
     @EpoxyAttribute
-    var text: CharSequence? = null
+    var text: SafeCharSequence? = null
 
     @EpoxyAttribute
     var depth: Int = 0
 
-
     @EpoxyAttribute
     var copyValue: String? = null
 
-
-    @EpoxyAttribute
+    @EpoxyAttribute(EpoxyAttribute.Option.DoNotHash)
     var itemClickListener: View.OnClickListener? = null
 
     override fun bind(holder: Holder) {
         super.bind(holder)
-        holder.textView.text = text
+        holder.textView.text = text?.charSequence
         holder.baseView.setPadding(Utils.dpToPx(16 * depth, holder.baseView.context), 0, 0, 0)
         itemClickListener?.let { holder.baseView.setOnClickListener(it) }
         holder.copyValue = copyValue

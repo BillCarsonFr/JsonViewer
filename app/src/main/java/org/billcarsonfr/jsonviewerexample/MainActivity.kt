@@ -3,6 +3,7 @@ package org.billcarsonfr.jsonviewerexample
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import androidx.annotation.RawRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.forEach
 import org.billcarsonfr.jsonviewer.JSonViewerDialog
@@ -25,43 +26,29 @@ class MainActivity : AppCompatActivity(), ChooseSampleFragment.OnFragmentMainNav
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        val jsonViewerFragment =
-            supportFragmentManager.findFragmentByTag("JSONVIEWER") as? JSonViewerFragment
-        when (item.itemId) {
-            R.id.sample1 -> {
-                val sample = resources.openRawResource(R.raw.sample1)
-                    .bufferedReader().use { it.readText() }
-                jsonViewerFragment?.showJson(sample, -1)
-            }
-            R.id.sample2 -> {
-                val sample = resources.openRawResource(R.raw.sample2)
-                    .bufferedReader().use { it.readText() }
-                jsonViewerFragment?.showJson(sample, -1)
-
-            }
-            R.id.sample3 -> {
-                val sample = resources.openRawResource(R.raw.sample3)
-                    .bufferedReader().use { it.readText() }
-                jsonViewerFragment?.showJson(sample, -1)
-
-            }
-            R.id.sample4 -> {
-                val sample = resources.openRawResource(R.raw.sample4)
-                    .bufferedReader().use { it.readText() }
-                jsonViewerFragment?.showJson(sample, -1)
-
-            }
-            R.id.sample5 -> {
-                val sample = resources.openRawResource(R.raw.sample5)
-                    .bufferedReader().use { it.readText() }
-                jsonViewerFragment?.showJson(sample, -1)
-
-            }
+        return when (item.itemId) {
+            R.id.sample1 -> loadSample(R.raw.sample1)
+            R.id.sample2 -> loadSample(R.raw.sample2)
+            R.id.sample3 -> loadSample(R.raw.sample3)
+            R.id.sample4 -> loadSample(R.raw.sample4)
+            R.id.sample5 -> loadSample(R.raw.sample5)
+            R.id.sample6 -> loadSample(R.raw.sample6)
+            else -> super.onOptionsItemSelected(item)
         }
-        return super.onOptionsItemSelected(item)
     }
 
-    override fun navigateToWrapSample(wrap: Boolean) {
+    private fun loadSample(@RawRes sampleId: Int): Boolean {
+        val jsonViewerFragment =
+            supportFragmentManager.findFragmentByTag("JSONVIEWER") as? JSonViewerFragment
+
+        val sample = resources.openRawResource(sampleId)
+            .bufferedReader()
+            .use { it.readText() }
+        jsonViewerFragment?.showJson(sample, -1)
+        return true
+    }
+
+    override fun navigateToSample(wrap: Boolean) {
         val sample = resources.openRawResource(R.raw.sample1)
             .bufferedReader().use { it.readText() }
         supportFragmentManager.beginTransaction()
@@ -100,5 +87,4 @@ class MainActivity : AppCompatActivity(), ChooseSampleFragment.OnFragmentMainNav
                 .commit()
         }
     }
-
 }
