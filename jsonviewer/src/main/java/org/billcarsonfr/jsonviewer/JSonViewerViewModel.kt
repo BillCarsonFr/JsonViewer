@@ -41,12 +41,12 @@ internal class JSonViewerViewModel(initialState: JSonViewerState) :
         @JvmStatic
         override fun initialState(viewModelContext: ViewModelContext): JSonViewerState? {
             val arg: JSonViewerFragmentArgs = viewModelContext.args()
-            try {
-                return JSonViewerState(
+            return try {
+                JSonViewerState(
                     Success(ModelParser.fromJsonString(arg.jsonString, arg.defaultOpenDepth))
                 )
             } catch (failure: Throwable) {
-                return JSonViewerState(Fail(failure))
+                JSonViewerState(Fail(failure))
             }
 
         }
